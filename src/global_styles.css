@@ -505,11 +505,48 @@ body {
     flex-direction: column;
     gap: 1.5rem;
   }
+  .Home-box p{
+    font-size: 1.1rem;
+  }
+
+  .Home-button{
+    width: 400px;
+    height: 120px;
+    font-size: 2rem;
+  }
+
+  .Home-button::after {
+    content: '→';
+    margin-left: 10px;
+    font-size: 3.0rem;
+    transition: transform 0.3s ease;
+  }
 
   .Home-features {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+@media screen and (max-width: 1024px) {
+  .Home-arrow {
+    width: 50px; /* Increase arrow size */
+    height: 90px; /* Increase arrow size */
+  }
+
+  .Home-arrow::before {
+    width: 60px; 
+    height: 60px; 
+    margin-left: -18px;
+    margin-top: -158px; 
+    border-left: 4px solid #00ffff; 
+    border-bottom: 4px solid #00ffff;
+  }
+
+  .Home-scroll-indicator {
+    bottom: 70px; 
+  }
+}
+
 
 @media (max-width: 768px) {
   .Home-hero {
