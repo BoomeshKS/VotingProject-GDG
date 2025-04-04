@@ -12,7 +12,7 @@ import { LoginComponent } from './login/login.component';
   providers: [
     provideRouter([
       { path: '', component: HomeComponent },
-      { path: 'login', component: LoginComponent },
+      { path: '/login', component: LoginComponent },
     ]),
   ],
   bootstrap: [AppComponent],

@@ -9,7 +9,7 @@ bootstrapApplication(AppComponent, {
   providers: [
     provideRouter([
       { path: '', component: HomeComponent },
-      { path: 'login', component: LoginComponent }
+      { path: '/login', component: LoginComponent }
     ])
   ]
 });
