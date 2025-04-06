@@ -1,0 +1,196 @@
+<!-- Loading Screen -->
+<div class="loading-screen" *ngIf="isLoading">
+  <div class="loading-content">
+    <div class="corner-lines top-left"></div>
+    <div class="corner-lines top-right"></div>
+    <div class="corner-lines bottom-left"></div>
+    <div class="corner-lines bottom-right"></div>
+    <div class="loading-symbol">⚡</div>
+    <h1 class="loading-text">TrustVoteX</h1>
+  </div>
+</div>
+
+<!-- Navbar -->
+<nav class="navbar" [class.solid]="!isHeroVisible || !isAtTop">
+  <div class="nav-content">
+    <a href="#" class="nav-logo">TrustVoteX</a>
+    <div class="menu-toggle" (click)="toggleMenu()">☰</div>
+    <div class="nav-links" [class.active]="isMenuOpen">
+      <a href="/dashboard" class="nav-link"><i class="fas fa-chart-line"></i> Dashboard</a>
+      <a href="/votingpage" class="nav-link"><i class="fas fa-vote-yea"></i> Voting Page</a>
+      <a href="/resultpage" class="nav-link"><i class="fas fa-poll"></i> Results Page</a>
+      <a href="/adminpage" class="nav-link"><i class="fas fa-user-shield"></i> Admin Panel</a>
+    </div>
+  </div>
+</nav>
+
+<div class="votContainer">
+    <h1 class="votTitle">Digital Voting Platform</h1>
+    
+    <div *ngIf="!selectedElection" class="votElectionList">
+      <div *ngFor="let election of elections" 
+           class="votElectionCard"
+           (click)="selectElection(election)">
+        <h2>{{ election.title }}</h2>
+        <p>{{ election.description }}</p>
+        <p>Ends: {{ election.endDate }}</p>
+      </div>
+    </div>
+
+    <div *ngIf="selectedElection" class="votForm">
+      <h2>Vote for: {{ selectedElection.title }}</h2>
+      
+      <div class="votFaceId">
+        <div *ngIf="!faceVerified">
+          <h3>Face Verification Required</h3>
+          <button class="votButton" (click)="startFaceVerification()">
+            Start Face Verification
+          </button>
+        </div>
+        <div *ngIf="faceVerified">
+          <h3>✓ Face Verified</h3>
+        </div>
+      </div>
+
+      <form (ngSubmit)="submitVote()" *ngIf="faceVerified">
+        <div class="votFormField" [class.visible]="true">
+          <label class="votLabel">Full Name</label>
+          <input type="text" 
+                 class="votInput" 
+                 [(ngModel)]="voterData.name" 
+                 name="name"
+                 (input)="checkFieldVisibility('name')"
+                 placeholder="Enter your full name">
+        </div>
+
+        <div class="votFormField" [class.visible]="isFieldVisible('dob')">
+          <label class="votLabel">Date of Birth</label>
+          <input type="date" 
+                 class="votInput" 
+                 [(ngModel)]="voterData.dob" 
+                 name="dob"
+                 (input)="checkFieldVisibility('dob')">
+        </div>
+
+        <div class="votFormField" [class.visible]="isFieldVisible('gender')">
+          <label class="votLabel">Gender</label>
+          <select class="votSelect" 
+                  [(ngModel)]="voterData.gender" 
+                  name="gender"
+                  (change)="checkFieldVisibility('gender')">
+            <option value="">Select Gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div class="votFormField" [class.visible]="isFieldVisible('nationality')">
+          <label class="votLabel">Nationality</label>
+          <input type="text" 
+                 class="votInput" 
+                 [(ngModel)]="voterData.nationality" 
+                 name="nationality"
+                 (input)="checkFieldVisibility('nationality')"
+                 placeholder="Enter your nationality">
+        </div>
+
+        <div class="votFormField" [class.visible]="isFieldVisible('voterId')">
+          <label class="votLabel">Voter ID/Aadhar Number</label>
+          <input type="text" 
+                 class="votInput" 
+                 [(ngModel)]="voterData.voterId" 
+                 name="voterId"
+                 (input)="checkFieldVisibility('voterId')"
+                 placeholder="Enter your ID number">
+        </div>
+
+        <div class="votGrid">
+          <div class="votFormField" [class.visible]="isFieldVisible('mobile')">
+            <label class="votLabel">Mobile Number</label>
+            <input type="tel" 
+                   class="votInput" 
+                   [(ngModel)]="voterData.mobile" 
+                   name="mobile"
+                   (input)="checkFieldVisibility('mobile')"
+                   placeholder="Enter mobile number">
+          </div>
+
+          <div class="votFormField" [class.visible]="isFieldVisible('email')">
+            <label class="votLabel">Email Address</label>
+            <input type="email" 
+                   class="votInput" 
+                   [(ngModel)]="voterData.email" 
+                   name="email"
+                   (input)="checkFieldVisibility('email')"
+                   placeholder="Enter email address">
+          </div>
+        </div>
+
+        <div class="votFormField" [class.visible]="isFieldVisible('govtId')">
+          <label class="votLabel">Government ID Proof</label>
+          <label class="votUploadLabel">
+            <input type="file" 
+                   class="votUpload"
+                   (change)="handleFileUpload($event)"
+                   accept="image/*">
+            Click to upload Aadhar/Voter ID image
+          </label>
+        </div>
+
+        <div class="votFormField" [class.visible]="isFieldVisible('address')">
+          <label class="votLabel">Address</label>
+          <textarea class="votInput" 
+                    [(ngModel)]="voterData.address" 
+                    name="address"
+                    (input)="checkFieldVisibility('address')"
+                    rows="3"
+                    placeholder="Enter your full address"></textarea>
+        </div>
+
+        <div class="votGrid">
+          <div class="votFormField" [class.visible]="isFieldVisible('district')">
+            <label class="votLabel">District</label>
+            <input type="text" 
+                   class="votInput" 
+                   [(ngModel)]="voterData.district" 
+                   name="district"
+                   (input)="checkFieldVisibility('district')"
+                   placeholder="Enter district">
+          </div>
+
+          <div class="votFormField" [class.visible]="isFieldVisible('pincode')">
+            <label class="votLabel">Pincode</label>
+            <input type="text" 
+                   class="votInput" 
+                   [(ngModel)]="voterData.pincode" 
+                   name="pincode"
+                   (input)="checkFieldVisibility('pincode')"
+                   placeholder="Enter pincode">
+          </div>
+        </div>
+
+        <div class="votTerms votFormField" [class.visible]="isFieldVisible('terms')">
+          <label>
+            <input type="checkbox" 
+                   class="votCheckbox"
+                   [(ngModel)]="voterData.termsAccepted" 
+                   name="terms">
+            I agree to the Terms & Conditions and confirm that all provided information is accurate
+          </label>
+        </div>
+        
+        <button type="submit" 
+                class="votButton" 
+                [disabled]="!isFormValid()">
+          Submit Vote
+        </button>
+        <button type="button" 
+                class="votButton" 
+                (click)="goBack()"
+                style="margin-top: 1rem">
+          Go Back
+        </button>
+      </form>
+    </div>
+  </div>

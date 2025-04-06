@@ -28,9 +28,9 @@ import { RouterModule } from '@angular/router';
         <div class="menu-toggle" (click)="toggleMenu()">☰</div>
         <div class="nav-links" [class.active]="isMenuOpen">
           <a href="/dashboard" class="nav-link"><i class="fas fa-chart-line"></i> Dashboard</a>
-          <a href="#" class="nav-link"><i class="fas fa-vote-yea"></i> Voting Page</a>
-          <a href="#" class="nav-link"><i class="fas fa-poll"></i> Results Page</a>
-          <a href="#" class="nav-link"><i class="fas fa-user-shield"></i> Admin Panel</a>
+          <a href="/votingpage" class="nav-link"><i class="fas fa-vote-yea"></i> Voting Page</a>
+          <a href="/resultpage" class="nav-link"><i class="fas fa-poll"></i> Results Page</a>
+          <a href="/adminpage" class="nav-link"><i class="fas fa-user-shield"></i> Admin Panel</a>
         </div>
       </div>
     </nav>
@@ -106,8 +106,8 @@ import { RouterModule } from '@angular/router';
           <h3>Contact Us</h3>
           <ul class="footer-links">
             <li><a href="#"><i class="fas fa-envelope"></i> support&#64;trustvotex.com</a></li>
-            <li><a href="#"><i class="fas fa-phone"></i> +1 (555) 123-4567</a></li>
-            <li><a href="#"><i class="fas fa-map-marker-alt"></i> New York, NY 10001</a></li>
+            <li><a href="#"><i class="fas fa-phone"></i> +91 73052 35736</a></li>
+            <li><a href="#"><i class="fas fa-map-marker-alt"></i> Tamil nadu, India</a></li>
           </ul>
         </div>
         <div class="footer-section">

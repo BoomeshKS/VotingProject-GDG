@@ -1,0 +1,627 @@
+/* Global styles */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+*/
+/* body {
+  background: linear-gradient(135deg, #0a0a0a 75%, #1a0636 100%);
+  color: white;
+  min-height: 100vh;
+}  */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+@keyframes glowPulse {
+  0% { box-shadow: 0 0 5px rgba(89, 20, 189, 0.5); }
+  50% { box-shadow: 0 0 20px rgba(89, 20, 189, 0.8); }
+  100% { box-shadow: 0 0 5px rgba(89, 20, 189, 0.5); }
+}
+
+
+
+
+
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #000000 80%, #2a0044 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+  }
+  
+  .loading-content {
+    text-align: center;
+    position: relative;
+  }
+  
+  .loading-text {
+    font-size: 3.5rem;
+    color:  #ffffff;
+    margin: 0;
+    opacity: 0;
+    font-family: 'Orbitron', sans-serif;
+    animation: fadeInOut 1.5s ease;
+  }
+  
+  .loading-symbol {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    animation: rotate 2s linear infinite;
+  }
+  
+  .corner-lines {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border: 2px solid #08a4f8;
+    opacity: 0;
+    animation: cornerFade 1.5s ease forwards;
+  }
+  
+  .corner-lines.top-left {
+    top: -100px;
+    left: -100px;
+    border-right: none;
+    border-bottom: none;
+  }
+  
+  .corner-lines.top-right {
+    top: -100px;
+    right: -100px;
+    border-left: none;
+    border-bottom: none;
+  }
+  
+  .corner-lines.bottom-left {
+    bottom: -100px;
+    left: -100px;
+    border-right: none;
+    border-top: none;
+  }
+  
+  .corner-lines.bottom-right {
+    bottom: -100px;
+    right: -100px;
+    border-left: none;
+    border-top: none;
+  }
+  
+  /* Navbar Styles */
+  .navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    padding: 1.2rem 0;
+  }
+  
+  .navbar.transparent {
+    background: transparent;
+    box-shadow: 0 4px 15px rgba(89, 0, 255, 0.3);
+  }
+  
+  .navbar.solid {
+    background: rgba(0, 0, 0, 0.9);
+    box-shadow: 0 4px 15px rgba(89, 0, 255, 0.3);
+  }
+  
+  .nav-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+  }
+  
+  .nav-logo {
+    font-size: 2rem;
+    font-weight: bold;
+    font-family: 'frizon', sans-serif;
+    color:  #ffffff;
+    text-decoration: none;
+    text-shadow: 0 0 10px rgba(89, 0, 255, 0.3);
+    transition: all 0.3s ease;
+  }
+  
+  .nav-logo:hover {
+    text-shadow: 0 0 15px rgba(89, 0, 255, 0.5);
+    transform: scale(1.05);
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+  }
+  
+  .nav-link {
+    color:  #ffffff;
+    text-decoration: none;
+    transition: all 0.4s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .nav-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(163, 227, 237, 0.2), transparent);
+    transition: 0.5s;
+  }
+  
+  .nav-link:hover::before {
+    left: 100%;
+  }
+  
+  .nav-link i {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+  }
+  
+  .nav-link:hover {
+    color: #a3e3ed;
+    background: rgba(36, 54, 64, 0.3);
+    transform: translateY(-2px);
+  }
+  
+  .nav-link:hover i {
+    transform: scale(1.2) rotate(5deg);
+  }
+  
+  .menu-toggle {
+    display: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+  }
+  
+  @keyframes fadeInOut {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+  
+  @keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  @keyframes cornerFade {
+    0% {
+      opacity: 0;
+      transform: scale(0);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-100px);
+    }
+  }
+
+
+/* main -section */
+
+.admLoginContainer {
+    margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 1.5rem;
+  animation: fadeIn 0.8s ease-out;
+}
+
+.admLoginForm {
+  background: rgba(26, 6, 54, 0.25);
+  padding: 3rem 2.5rem;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(89, 20, 189, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.admLoginForm:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(89, 20, 189, 0.3);
+}
+
+.admLoginTitle {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2.4rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #fff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.admLoginIcon {
+  text-align: center;
+  font-size: 4rem;
+  margin: 0 0 2.5rem;
+  opacity: 0.9;
+  text-shadow: 0 2px 10px rgba(89, 20, 189, 0.5);
+}
+
+.admInputGroup {
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.admInputGroup i {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.4rem;
+  transition: all 0.3s ease;
+}
+
+.admInput {
+  width: 100%;
+  padding: 16px 50px;
+  background: rgba(89, 20, 189, 0.1);
+  border: 1px solid rgba(89, 20, 189, 0.3);
+  border-radius: 12px;
+  color: white;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+}
+
+.admInput:focus {
+  background: rgba(89, 20, 189, 0.15);
+  border-color: rgba(89, 20, 189, 0.6);
+  box-shadow: 0 0 20px rgba(89, 20, 189, 0.3);
+}
+
+.admInput::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.admLoginBtn {
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(90deg, #3b0f87, #5914bd, #3b0f87);
+  background-size: 200% auto;
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  animation: shimmer 3s linear infinite;
+}
+
+.admLoginBtn:hover {
+  background-size: 200% auto;
+  animation: shimmer 2s linear infinite;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(89, 20, 189, 0.5);
+}
+
+.admNotification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 15px 25px;
+  background: linear-gradient(135deg, #3b0f87, #5914bd);
+  color: white;
+  border-radius: 12px;
+  transform: translateX(200%);
+  transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+}
+
+.admNotification.show {
+  transform: translateX(0);
+  animation: glowPulse 2s infinite;
+}
+
+.admWelcome {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  background: rgba(26, 6, 54, 0.95);
+  padding: 3.5rem;
+  border-radius: 20px;
+  display: none;
+  box-shadow: 0 0 50px rgba(89, 20, 189, 0.4);
+  border: 1px solid rgba(89, 20, 189, 0.3);
+  animation: fadeIn 0.8s ease-out;
+  min-width: 320px;
+  max-width: 90%;
+  width: auto;
+}
+
+.admWelcome h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(90deg, #fff, #e0e0e0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.admDashboard {
+  margin-top: 50px;
+  display: none;
+  padding: 2rem;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  color: white;
+}
+
+.admDashboard.visible {
+  opacity: 1;
+}
+
+.admHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2.5rem;
+  animation: fadeIn 0.8s ease-out;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.admHeader h1 {
+  font-size: 2rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.admStats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.admStatCard {
+  background: rgba(89, 20, 189, 0.1);
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(89, 20, 189, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  opacity: 0;
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+.admStatCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(89, 20, 189, 0.3);
+}
+
+.admSection {
+  background: rgba(89, 20, 189, 0.1);
+  padding: 2rem;
+  border-radius: 15px;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(89, 20, 189, 0.2);
+  opacity: 0;
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+.admTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1.5rem;
+  overflow-x: auto;
+  display: block;
+}
+
+.admTable th,
+.admTable td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(89, 20, 189, 0.2);
+  min-width: 120px;
+}
+
+.admTable th {
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(89, 20, 189, 0.1);
+}
+
+.admGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+@media (max-width: 1028px) {
+
+    .menu-toggle, .nav-logo{
+        font-size: 4rem;
+      }
+    
+      .corner-lines{
+        border: 5px solid #08a4f8;
+      }
+    
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.95);
+        padding: 1rem 0;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        font-size: 3rem;
+        border-radius: 40px;
+        color: white;
+    
+      }
+    
+      .nav-links i{
+        font-size: 2rem;
+      }
+    
+      .nav-links.active {
+        display: flex;
+      }
+    
+    
+      .nav-link {
+        opacity: 0;
+        transform: translateY(-10px);
+        animation: mobileMenuItemAppear 0.3s ease forwards;
+      }
+    
+      .nav-link:nth-child(1) { animation-delay: 0.1s; }
+      .nav-link:nth-child(2) { animation-delay: 0.2s; }
+      .nav-link:nth-child(3) { animation-delay: 0.3s; }
+      .nav-link:nth-child(4) { animation-delay: 0.4s; }
+    
+      .menu-toggle {
+        display: block;
+        color: white;
+      }
+
+
+
+  .admLoginForm {
+    padding: 2rem;
+    margin: 1rem;
+    /* width: 100%; */
+    min-width: 700px;
+    min-height: 600px;
+  }
+
+  .admInputGroup input{
+    font-size: 2rem;
+    font-family: poppins;
+  }
+
+
+  .admWelcome p{
+    color: white;
+    font-size: 1.5rem;
+  }
+
+  .admLoginBtn{
+    font-size: 2rem;
+  }
+  .admLoginTitle {
+    font-size: 4rem;
+  }
+
+  .admNotification{
+    margin-top: 80px;
+    font-size: 3rem;
+  }
+
+  .admHeader {
+    text-align: center;
+    justify-content: center;
+  }
+
+  .admHeader h1 {
+    margin-top: 60px;
+    font-size: 3rem;
+    width: 100%;
+    text-align: center;
+  }
+
+  .admStats {
+    grid-template-columns: 1fr;
+  }
+
+  .admGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .admStatCard, .admSection {
+    padding: 1.5rem;
+  }
+
+  .admTable {
+    font-size: 1.9rem;
+  }
+
+  .admTable th,
+  .admTable td {
+    padding: 0.8rem;
+  }
+
+  .admWelcome {
+    padding: 2rem;
+    width: 90%;
+  }
+
+  .admWelcome h2 {
+    font-size: 3rem;
+  }
+
+  .admSection input{
+    font-size: 2rem;
+  }
+
+
+}
+
+
+@keyframes mobileMenuItemAppear {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }

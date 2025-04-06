@@ -1,0 +1,153 @@
+<!-- Loading Screen -->
+<div class="loading-screen" *ngIf="isLoading">
+    <div class="loading-content">
+      <div class="corner-lines top-left"></div>
+      <div class="corner-lines top-right"></div>
+      <div class="corner-lines bottom-left"></div>
+      <div class="corner-lines bottom-right"></div>
+      <div class="loading-symbol">⚡</div>
+      <h1 class="loading-text">TrustVoteX</h1>
+    </div>
+  </div>
+  
+  <!-- Navbar -->
+  <nav class="navbar" [class.solid]="!isHeroVisible || !isAtTop">
+    <div class="nav-content">
+      <a href="#" class="nav-logo">TrustVoteX</a>
+      <div class="menu-toggle" (click)="toggleMenu()">☰</div>
+      <div class="nav-links" [class.active]="isMenuOpen">
+        <a href="/dashboard" class="nav-link"><i class="fas fa-chart-line"></i> Dashboard</a>
+        <a href="/votingpage" class="nav-link"><i class="fas fa-vote-yea"></i> Voting Page</a>
+        <a href="/resultpage" class="nav-link"><i class="fas fa-poll"></i> Results Page</a>
+        <a href="/adminpage" class="nav-link"><i class="fas fa-user-shield"></i> Admin Panel</a>
+      </div>
+    </div>
+  </nav>    
+    
+
+
+    <!-- Login Form -->
+    <div class="admLoginContainer" [style.display]="isLoggedIn ? 'none' : 'flex'">
+        <form class="admLoginForm" (submit)="handleLogin($event)">
+          <h1 class="admLoginTitle">Admin Login</h1>
+          <div class="admLoginIcon">👨‍💼</div>
+          <div class="admInputGroup">
+            <i>👤</i>
+            <input 
+              type="text" 
+              class="admInput" 
+              placeholder="User ID"
+              [(ngModel)]="userId"
+              name="userId"
+            >
+          </div>
+          <div class="admInputGroup">
+            <i>🔒</i>
+            <input 
+              type="password" 
+              class="admInput" 
+              placeholder="Password"
+              [(ngModel)]="password"
+              name="password"
+            >
+          </div>
+          <button type="submit" class="admLoginBtn">Login</button>
+        </form>
+      </div>
+  
+      <!-- Success Notification -->
+      <div class="admNotification" [class.show]="showNotification">
+        Successfully logged in! 🎉
+      </div>
+  
+      <!-- Welcome Message -->
+      <div class="admWelcome" [style.display]="showWelcome ? 'block' : 'none'">
+        <h2>Welcome Admin! 👋</h2>
+        <p>Accessing your secure dashboard...</p>
+      </div>
+  
+      <!-- Dashboard -->
+      <div class="admDashboard" [class.visible]="showDashboard" [style.display]="showDashboard ? 'block' : 'none'">
+        <div class="admHeader">
+          <h1>Voting System Admin Panel</h1>
+          <button class="admLoginBtn" (click)="logout()">Logout</button>
+        </div>
+  
+        <div class="admStats">
+          <div class="admStatCard" style="--animation-order: 1">
+            <h3>Total Registered Voters</h3>
+            <p>15,234</p>
+          </div>
+          <div class="admStatCard" style="--animation-order: 2">
+            <h3>Verified Voters</h3>
+            <p>12,845</p>
+          </div>
+          <div class="admStatCard" style="--animation-order: 3">
+            <h3>Total Votes Cast</h3>
+            <p>8,976</p>
+          </div>
+          <div class="admStatCard" style="--animation-order: 4">
+            <h3>Active Elections</h3>
+            <p>2</p>
+          </div>
+        </div>
+  
+        <div class="admGrid">
+          <div class="admSection" style="--animation-order: 5">
+            <h2>Voter Management</h2>
+            <input type="text" class="admInput" placeholder="Search voters...">
+            <table class="admTable">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>V001</td>
+                  <td>John Doe</td>
+                  <td>Verified</td>
+                  <td><button class="admLoginBtn">View</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+  
+          <div class="admSection" style="--animation-order: 6">
+            <h2>Election Management</h2>
+            <button class="admLoginBtn">Create New Election</button>
+            <table class="admTable">
+              <thead>
+                <tr>
+                  <th>Election</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>General Election 2025</td>
+                  <td>Active</td>
+                  <td><button class="admLoginBtn">Manage</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+  
+        <div class="admGrid">
+          <div class="admSection" style="--animation-order: 7">
+            <h2>Blockchain Status</h2>
+            <p>Smart Contract: Active</p>
+            <p>Last Block: #12458</p>
+          </div>
+  
+          <div class="admSection" style="--animation-order: 8">
+            <h2>AI Fraud Detection</h2>
+            <p>No suspicious activities detected</p>
+          </div>
+        </div>
+      </div>

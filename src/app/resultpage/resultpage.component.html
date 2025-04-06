@@ -1,0 +1,148 @@
+<!-- Loading Screen -->
+<div class="loading-screen" *ngIf="isLoading">
+  <div class="loading-content">
+    <div class="corner-lines top-left"></div>
+    <div class="corner-lines top-right"></div>
+    <div class="corner-lines bottom-left"></div>
+    <div class="corner-lines bottom-right"></div>
+    <div class="loading-symbol">⚡</div>
+    <h1 class="loading-text">TrustVoteX</h1>
+  </div>
+</div>
+
+<!-- Navbar -->
+<nav class="navbar" [class.solid]="!isHeroVisible || !isAtTop">
+  <div class="nav-content">
+    <a href="#" class="nav-logo">TrustVoteX</a>
+    <div class="menu-toggle" (click)="toggleMenu()">☰</div>
+    <div class="nav-links" [class.active]="isMenuOpen">
+      <a href="/dashboard" class="nav-link"><i class="fas fa-chart-line"></i> Dashboard</a>
+      <a href="/votingpage" class="nav-link"><i class="fas fa-vote-yea"></i> Voting Page</a>
+      <a href="/resultpage" class="nav-link"><i class="fas fa-poll"></i> Results Page</a>
+      <a href="/adminpage" class="nav-link"><i class="fas fa-user-shield"></i> Admin Panel</a>
+    </div>
+  </div>
+</nav>
+
+
+<div class="resp-container">
+    <nav class="resp-nav" [@fadeInStagger]="'in'">
+      <a (click)="activeSection = 'overview'" [class.active]="activeSection === 'overview'">Overview</a>
+      <a (click)="activeSection = 'results'" [class.active]="activeSection === 'results'">Live Results</a>
+      <a (click)="activeSection = 'charts'" [class.active]="activeSection === 'charts'">Analytics</a>
+      <a (click)="activeSection = 'audit'" [class.active]="activeSection === 'audit'">Audit Logs</a>
+    </nav>
+
+    <div class="resp-status" [@fadeInUp]>
+      <div class="status-indicator">
+        🟢 Results Finalized
+      </div>
+    </div>
+
+    <section *ngIf="activeSection === 'overview'" class="resp-section" [@contentAnimation]>
+      <h1>2024 National Elections</h1>
+      <div class="resp-grid">
+        <div class="resp-card">
+          <h3>Election Period</h3>
+          <p>Start: March 1, 2024</p>
+          <p>End: March 15, 2024</p>
+        </div>
+        <div class="resp-card">
+          <h3>Constituencies</h3>
+          <p>Total: 543</p>
+          <p>Results Declared: 543</p>
+          <p>Counting Complete: 100%</p>
+        </div>
+        <div class="resp-card">
+          <h3>Voter Statistics</h3>
+          <p>Registered Voters: 900,000,000</p>
+          <p>Total Votes Cast: 621,000,000</p>
+          <p>Turnout: 69%</p>
+          <p>Valid Votes: 618,500,000</p>
+          <p>Invalid Votes: 2,500,000</p>
+        </div>
+        <div class="resp-card">
+          <h3>Verification Status</h3>
+          <p>Blockchain Verified: 100%</p>
+          <p>AI Analysis Complete: Yes</p>
+          <p>Last Updated: 2 hours ago</p>
+        </div>
+      </div>
+    </section>
+
+    <section *ngIf="activeSection === 'results'" class="resp-section" [@contentAnimation]>
+      <h2>Live Results by Candidate</h2>
+      <div class="resp-candidates">
+        <div class="resp-candidate-card winner">
+          <div class="party-logo">⭐</div>
+          <h3>John Smith</h3>
+          <p class="party-name">Progressive Party</p>
+          <div class="votes">
+            <span class="vote-count">32,450,000</span>
+            <span class="vote-percentage">45.2%</span>
+          </div>
+          <span class="winner-tag">Winner</span>
+        </div>
+        <div class="resp-candidate-card">
+          <div class="party-logo">🌟</div>
+          <h3>Sarah Johnson</h3>
+          <p class="party-name">Democratic Alliance</p>
+          <div class="votes">
+            <span class="vote-count">28,750,000</span>
+            <span class="vote-percentage">38.5%</span>
+          </div>
+        </div>
+        <div class="resp-candidate-card">
+          <div class="party-logo">💫</div>
+          <h3>Michael Brown</h3>
+          <p class="party-name">People's Front</p>
+          <div class="votes">
+            <span class="vote-count">12,300,000</span>
+            <span class="vote-percentage">16.3%</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section *ngIf="activeSection === 'charts'" class="resp-section" [@contentAnimation]>
+      <h2>Vote Distribution</h2>
+      <div class="resp-chart">
+        <div class="chart-placeholder">
+          [Interactive Vote Distribution Chart]
+        </div>
+      </div>
+    </section>
+
+    <section *ngIf="activeSection === 'audit'" class="resp-section" [@contentAnimation]>
+      <h2>Blockchain & AI Audit</h2>
+      <div class="resp-audit">
+        <div class="audit-item">
+          <h3>Smart Contract</h3>
+          <a href="https://etherscan.io/address/0x..." target="_blank" class="contract-link">
+            0x1234...5678
+          </a>
+          <p>Contract Type: Vote Recording</p>
+          <p>Deployment Date: Feb 28, 2024</p>
+          <p>Last Transaction: 2 hours ago</p>
+        </div>
+        <div class="audit-item">
+          <h3>AI Verification Status</h3>
+          <p class="status-success">No fraud detected</p>
+          <p>Analysis Completion: 100%</p>
+          <p>Pattern Analysis: Complete</p>
+          <p>Anomaly Detection: Clear</p>
+        </div>
+        <div class="audit-item">
+          <h3>Latest Block Hash</h3>
+          <p class="hash">0xabcd...efgh</p>
+          <p>Block Number: #18245673</p>
+          <p>Timestamp: 2024-03-15 18:30 UTC</p>
+          <p>Confirmations: 1205</p>
+        </div>
+      </div>
+
+      <div class="resp-disclaimer">
+        <p>All votes have been anonymized using Zero-Knowledge Proofs and are cryptographically verified to protect voter privacy. Each vote is secured through advanced encryption and verified across multiple blockchain nodes to ensure complete transparency while maintaining anonymity.</p>
+      </div>
+    </section>
+  </div>
